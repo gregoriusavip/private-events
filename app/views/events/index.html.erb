@@ -1,0 +1,6 @@
+<h1>UPCOMING EVENTS</h1>
+<% @events.with_index do |event, i| %>
+    <%= "Event #{i+1}"  %>
+    <br />
+    <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}"%></span>
+<% end %>
