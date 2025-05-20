@@ -1,5 +1,26 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new, :create ]
   def index
     @events = Event.find_each
+  end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = current_user.events.build(allowed_event_params)
+
+    if @event.save
+      redirect_to user_path(current_user.id)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def allowed_event_params
+    params.expect(event: [ :location, :time ])
   end
 end

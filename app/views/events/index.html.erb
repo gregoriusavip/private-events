@@ -2,6 +2,6 @@
 <% @events.with_index do |event, i| %>
     <%= "Event #{i+1}"  %>
     <br />
-    <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}"%></span>
+    <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}, HOSTED BY: #{event.creator.email}"%></span>
     <br /><br />
 <% end %>

@@ -1,0 +1,11 @@
+<h1>MY EVENTS</h1>
+<% if @events.empty? %>
+    No events have been created. Create one HERE!
+<% else %>
+    <% @events.find_each.with_index do |event, i| %>
+        <%= "Event #{i+1}"  %>
+        <br />
+        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}"%></span>
+        <br /><br />
+    <% end %>
+<% end %>
