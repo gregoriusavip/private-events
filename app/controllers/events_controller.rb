@@ -9,9 +9,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.created_events.build(allowed_event_params)
+    @new_event = current_user.created_events.build(allowed_event_params)
 
-    if @event.save
+    if current_user.attended_events << @new_event
       redirect_to user_path(current_user.id)
     else
       render :new, status: :unprocessable_entity
