@@ -1,5 +1,19 @@
-<h1>ALL EVENTS</h1>
-<% @events.with_index do |event, i| %>
+<h1>UPCOMING EVENTS</h1>
+    <% @upcoming_events.each_with_index do |event, i| %>
+    <%= "Event #{i+1}"  %>
+    <br />
+    <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}, HOSTED BY: #{event.creator.email}"%></span>
+    <br />
+    <span style="padding-left: 10px;">
+        <%= "Attendee(s):" %>
+        <% event.attendees.each do |attendee| %>
+            <%= attendee.email%>
+        <% end %>
+    </span>
+    <br />
+<% end %>
+<h1>PAST EVENTS</h1>
+<% @past_events.each_with_index do |event, i| %>
     <%= "Event #{i+1}"  %>
     <br />
     <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}, HOSTED BY: #{event.creator.email}"%></span>
