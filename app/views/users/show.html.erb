@@ -5,7 +5,7 @@
     <% @events.find_each.with_index do |event, i| %>
         <%= "Event #{i+1}"  %>
         <br />
-        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}"%></span>
+        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date}"%></span>
         <br /><br />
     <% end %>
 <% end %>
