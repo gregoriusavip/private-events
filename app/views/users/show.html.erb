@@ -5,7 +5,18 @@
     <% @events.find_each.with_index do |event, i| %>
         <%= "Event #{i+1}"  %>
         <br />
-        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date}"%></span>
+        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date if event.time }"%></span>
+        <br /><br />
+    <% end %>
+<% end %>
+<h2>ATTENDED EVENTS</h2>
+<% if current_user.attended_events.empty? %>
+    No events have been attended. Attend one HERE!
+<% else %>
+    <% current_user.attended_events.each_with_index do |event, i| %>
+    <%= "Event #{i+1}"  %>
+        <br />
+        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date if event.time }"%></span>
         <br /><br />
     <% end %>
 <% end %>
