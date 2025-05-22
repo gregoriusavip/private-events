@@ -3,5 +3,12 @@
     <%= "Event #{i+1}"  %>
     <br />
     <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time}, HOSTED BY: #{event.creator.email}"%></span>
-    <br /><br />
+    <br />
+    <span style="padding-left: 10px;">
+        <%= "Attendee(s):" %>
+        <% event.attendees.each do |attendee| %>
+            <%= attendee.email%>
+        <% end %>
+    </span>
+    <br />
 <% end %>
