@@ -9,11 +9,19 @@
         <br /><br />
     <% end %>
 <% end %>
-<h2>ATTENDED EVENTS</h2>
+<h1>ATTENDED EVENTS</h1>
 <% if current_user.attended_events.empty? %>
     No events have been attended. Attend one HERE!
 <% else %>
-    <% current_user.attended_events.each_with_index do |event, i| %>
+    <h2>UPCOMING</h2>
+    <% current_user.attended_events.where(time: Time.current..).each_with_index do |event, i| %>
+    <%= "Event #{i+1}"  %>
+        <br />
+        <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date if event.time }"%></span>
+        <br /><br />
+    <% end %>
+    <h2>PAST EVENTS</h2>
+    <% current_user.attended_events.where(time: ...Time.current).each_with_index do |event, i| %>
     <%= "Event #{i+1}"  %>
         <br />
         <span style="padding-left: 10px;"><%= "LOCATION: #{event.location}, TIME: #{event.time.to_date if event.time }"%></span>
