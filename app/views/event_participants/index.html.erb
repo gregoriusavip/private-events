@@ -1,0 +1,21 @@
+<h1>UPCOMING EVENTS</h1>
+<% if @events.empty? %>
+    No available upcoming event.
+<% else %>
+    <% @events.each_with_index do |event, i| %>
+        <%= "Event #{i+1}" %>
+        <br />
+        <span style="padding-left: 10px;">
+            <%= "LOCATION: #{event.location}, TIME: #{event.time.to_date}, HOSTED BY: #{event.creator.email}"%>
+            <% ep = EventParticipant.find_by(attending_user_id: current_user.id, attending_event_id: event.id) %>
+            <% if ep %>
+                <%= button_to "CANCEL", {:controller => :event_participants,
+                    :action => 'destroy', :id => ep.id }, :method => :delete %>
+            <% else %>
+                <%= button_to "ATTEND", { method: :create }, params: { attending_user_id: current_user.id, attending_event_id: event.id } %>
+            <% end %>
+        </span>
+        <br />
+        <br />
+    <% end %>
+<% end %>
